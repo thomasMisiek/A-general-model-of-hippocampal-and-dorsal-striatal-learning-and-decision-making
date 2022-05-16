@@ -1,4 +1,4 @@
-\subsection{Introduction}
+\section{Introduction}
 
 This study is a partial replication of Geerts, Chersi, Stachenfeld and Burgess (2020) \cite{Geerts:2020} that presented a reliability-based arbitration mechanism between an associative-learning strategy and a place-based navigation strategy. This model was proposed to mimic the behavior of rats in a series of spatial navigation tasks that had been reported in previous experimental articles.
 
@@ -8,9 +8,8 @@ Here we present replications of model simulations in the first task addressed by
 
 Geerts and colleagues provided a python implementation of their model and of the simulated task, accessible on ModelDB \cite{modeldb}. Nevertheless, we were not able to reproduce their results without modifications to the original code and model parameters. Furthermore, while inspecting the provided modules, we found several discrepancies with the original experimental protocol (Fig.~\ref{fig:maze}.B).
 
-The implementation we propose in this article is thus a modified version of the original code of Geerts, Chersi, Stachenfeld and Burgess (2020) \cite{Geerts:2020}. It intends first to find the correct parameters of the model that enable the reproduction of the results presented in their paper. Then, we propose modifications of the code to more accurately simulate the original experimental protocol of Pearce et al. (1998) \cite{Pearce:1998}, and perform new optimizations of model parameters in order to find those that enable the model to replicate rat behavior in this adapted version of the simulated task (Fig.~\ref{fig:maze}.C). The code was also modified to be far less computationally expensive (both in processing time and in memory consumption), while accepting new spatial navigation strategies and arbitration mechanisms, and finally to perform supplementary experiments which are unrelated to this paper. We find that the new version of the code enables the model of Geerts et al. (2020) \cite{Geerts:2020} to account for nearly all aspects of the rat original learning curves.
 
-In summary, although we partly reuse the original code of Geerts et al. (2020) \cite{Geerts:2020}, we argue that the present work should be considered as a replication rather than as a reproduction due to the numerous changes brought to both the navigation strategy models and to the simulated experimental protocol.
+In summary, although we partly reuse the original code of Geerts et al. (2020) \cite{Geerts:2020}, we argue that the present work should be considered as a replication rather than as a reproduction (see \href{https://rescience.github.io/faq/}{the ReScience FAQ} for a discussion on the meaning of both of these terms) due to the numerous changes brought to both the navigation strategy models and to the simulated experimental protocol.
 
 \begin{figure}[htp]
     \centering
@@ -19,9 +18,9 @@ In summary, although we partly reuse the original code of Geerts et al. (2020) \
     \label{fig:maze}
 \end{figure} 
 
-\subsection{Methods}
+\section{Methods}
 
-\subsubsection{Pearce, Roberts and Good (1998) experimental protocol}
+\subsection{Pearce, Roberts and Good (1998) experimental protocol}
 In this experiment, rats were released in a circular tank (pool) filled with opaque water (Fig.~\ref{fig:maze}.A). They had 120 seconds to swim and find an immersed platform on which they could rest for 30 seconds, before being subjected to a new trial of the experiment. Animals that did not find the platform after 120 seconds were lifted from the water by the experimenter and placed back on the platform for 30 seconds.
 
 A spherical black landmark was placed, distant from a fixed offset of 20 centimeters to the north of the platform. This helped the animal roughly localize the area were the platform was located, while not enabling rats to simply use a cue-guided strategy because of the distance between the landmark and the platform. This was meant as a means to make rats use a combination of a cue-guided (associative learning) strategy and a place-based strategy relying on hippocampus-based mapping of the environment thanks to the distal landmarks placed around the pool. The pool, platform and landmark were respectively of a 2m, 10cm and 13cm diameter.
@@ -37,12 +36,14 @@ In their original article, Pearce, Roberts and Good \cite{Pearce:1998} measured 
     \caption{Mean escape-time across sessions. 
     {\bf A} Experimental results from Pearce. 
     {\bf B} Results published in Geert et al. (2020)'s article, continuous lines represent performances on the first trial of each session, doted lines represent the last trial. Blue lines indicate control group performances, whereas orange is linked with the hippocampally-lesioned group. 
-    {\bf C} Our reproduction of Geerts et al. (2020)'s results after optimizing model parameters in their version of the simulated task illustrated in Fig.~\ref{fig:maze}.B.
-    {\bf D} Our replication of Geerts et al. (2020)'s results after optimizing model parameters in the adapted version of the simulated task illustrated in Fig.~\ref{fig:maze}.C.}
+    {\bf C} Our reproduction of Geerts et al. (2020)'s results after optimizing model parameters in their version of the simulated task illustrated in Fig.~\ref{fig:maze}.B. Processing time for 100 agents: 4h07min.
+    {\bf D} Our replication of Geerts et al. (2020)'s results after optimizing model parameters in the adapted version of the simulated task illustrated in Fig.~\ref{fig:maze}.C.
+    Processing time for 100 agents: 21 minutes.}
     \label{fig:learningCurves}
+    
 \end{figure}
 
-\subsubsection{Topological discrepancies with Geerts, Chersi, Stachenfeld and Burgess (2020)'s provided code}
+\subsection{Topological discrepancies with Geerts, Chersi, Stachenfeld and Burgess (2020)'s provided code}
 Geerts et al. (2020)'s computational version of the water-maze consists of an hexagonal environment composed of 271 discrete states (see Figure~\ref{fig:maze}.B). Transitions from one state to its neighbors are possible along six directions: North, North-East, South-East, South, South-West and North-West. 
 
 A first topological discrepancy with the original experiment is that in the latter the landmark-platform distance is of a constant 20cm. In contrast, in Geerts et al. (2020)’s code this distance is only of half a state, which roughly represents 5 centimeters relative to the size of the maze. This is quite important as these 20 centimeters distance were originally introduced by Pearce et al. (1998) to prevent a simple cue-guided learning strategy to be sufficient to solve the task: such a strategy would not have been sufficient for the animal to find the platform by chance when moving around the landmark. A substantial distance between landmark and platform is thus important to hinder rats’ associative-learning performances, and thus to ensure that they would also rely on their cognitive mapping abilities. 
@@ -53,7 +54,7 @@ Finally, the platform's positions provided in Geerts et al. (2020)’s source co
 
 These three topological discrepancies have all been corrected in our new implementation. Our version of the maze can be visualized and compared to the others in Figure~\ref{fig:maze}.C.
 
-\subsubsection{Non-topological discrepancies and limitations in the implementation of the navigation strategies}
+\subsection{Non-topological discrepancies and limitations in the implementation of the navigation strategies}
 
 In Geerts et al. (2020)’ code, the agents’ Successor-Representation module was instantiated with non-random and non-zero weights. The weights were instantiated in such a way that the SR encoded an optimal representation of the transition function, as if agents had already wandered around across the water-maze in an initial latent learning phase. Such a phase, however, is absent from the original protocol described in Pearce et al. (1998)'s article. We corrected this by setting the initial values of all elements of the SR's matrix to 0.
 
@@ -65,13 +66,13 @@ In addition, a more minor discrepancy of Geerts et al. (2020)'s simulations has 
 
 Finally, there was in the code no trace of an implementation of the eligibility trace algorithm, as claimed in the methods of the paper. We did not implement one in our version.
 
-\subsubsection{Required re-optimization of model parameters}
+\subsection{Required re-optimization of model parameters}
 In order to first reproduce Geerts et al. (2020)'s simulation results \citep{Geerts:2020} with the same virtual maze that they used (depicted in Fig.~\ref{fig:maze}.B), we executed the original script provided by the authors. We were able to execute the code after correcting a few minor bugs. 
 On the other hand, the parameters presented in the article are different from those found in the original source code of Geerts and colleagues. Thus it was not clear which exact model parameters were used to produce Fig.~\ref{fig:learningCurves}.B (adapted from their article). We were unable to replicate the authors learning curves with either parameter-sets, thus we used manual tuning to find a suitable combination of parameter values.
 
 Secondly, as we modified the simulated protocol to better match Pearce's task (Fig.~\ref{fig:maze}.C), we had to  perform a parameter optimization so as to try to fit and replicate the experimental data (Fig.~\ref{fig:learningCurves}.A) Specifically, we ran a random grid-search on four of the model's parameters: SR learning rate, MF learning rate, value function discount rate and exploration inverse temperature. We generated 2000 random combinations of these four parameters within bounded values. We then conducted a single agent simulation for each set of parameters. The mean performances of local clusters of datapoints in the four dimensional-space of parameters was computed and compared to the experimental data using the Mean-Squared-Error (MSE) method. The centroid of the cluster with the lowest MSE was selected to produce the data published in this paper (Fig.~\ref{fig:learningCurves}.D).
 
-\subsection{Results}
+\section{Results}
 
 
 
@@ -89,10 +90,10 @@ Parameters & Geerts article & Geerts code & Reproduction & Replication \\ [0.5ex
 Maze size (diameter) & Unspecified  & 10 states & 10 states  & 10 states\\ 
 Number of agents & Unspecified & 100 & 100 & 100\\ 
 Platform-landmark distance & Unspecified & 1 state & 1 state & 4 states\\ 
-HPC module learning rate & 0.07 & 0.1 & 0.07 & 0.088\\
-DLS module learning rate & 0.07 & 0.1 & 0.07 & 0.175\\
-Arbitrator inverse temperature & 5 & 5 & 16 & 64\\
-SR Discount factor & 0.95 & 0.99 & 0.95 & 0.92 \\
+HPC module learning rate & 0.07 & 0.1 & 0.07 & 0.074\\
+DLS module learning rate & 0.07 & 0.1 & 0.07 & 0.256\\
+Arbitrator inverse temperature & 5 & 5 & 16 & 50\\
+SR Discount factor & 0.95 & 0.99 & 0.95 & 0.82 \\
 DLS Discount factor & 0.95 & 0.9 & 0.9 & 0.92 \\
 Reliability learning rate & 0.03 & 0.03 & 0.03 & 0.03 \\
 Transition rate MF to SR & Unspecified & 0.01 & 0.01 & 0.01 \\
@@ -108,10 +109,11 @@ DLS lesion & False & True & False & False\\
 
 We were also able to replicate the original results of Pearce et al. (1998) \cite{Pearce:1998} using the modified version of Geerts et al. (2020)'s protocol that we implemented (see Fig.~\ref{fig:learningCurves}.D), and using the custom set of parameters found using our random grid-search algorithm and producing the lowest MSE.(see Table~\ref{tab:param}).
 
-An ANOVA on the individual mean escape time of the agents showed a significant effect of trial (p = 0.014, F = 11.5) for the control group, whereas no  significant effect (p=0.58) of trial was found for the hippocampally-lesioned group, as was reported in Pearce et al. (1998)'s paper. An ANOVA also showed a significant difference between the two groups both at the first and fourth trial (p < 2e-05, F > 18.6 for both). The difference in escape time between the first and last trials for the control group is smaller with our implementation than with Geerts et al. (2020)'s one (compare Fig.~\ref{fig:learningCurves}.B and Fig.C to Fig.~\ref{fig:learningCurves}.D in early sessions). This can be explained by the fact that in their original article, Geerts et al. (2020)'s Successor-Representation matrix was instantiated with non-zero weights which improved the performances of the place-based module and thus inter-trial learning. Nevertheless, as we wrote in the methods above, this is less close to the experimental protocol in Pearce et al. (1998) where rats did not experience any pretraining phase before the task.
+An ANOVA on the individual mean escape time of the agents showed a significant effect of trial (p = 7.5e-23, F = 166.4) for the control group, whereas no  significant effect (p=0.22) of trial was found for the hippocampally-lesioned group, as was reported in Pearce et al. (1998)'s paper. An ANOVA also showed a significant difference between the two groups both at the first and fourth trial (p < 2.e-06, F > 24.6 for both). The difference in escape time between the first and last trials for the control group is smaller with our implementation than with Geerts et al. (2020)'s one (compare Fig.~\ref{fig:learningCurves}.B and Fig.C to Fig.~\ref{fig:learningCurves}.D in early sessions). This can be explained by the fact that in their original article, Geerts et al. (2020)'s Successor-Representation matrix was instantiated with non-zero weights which improved the performances of the place-based module and thus inter-trial learning. Nevertheless, as we wrote in the methods above, this is less close to the experimental protocol in Pearce et al. (1998) where rats did not experience any pretraining phase before the task.
 
-\subsection{Conclusion}
+\section{Conclusion}
 We were able to quantitatively and qualitatively replicate the results of the first experiment of Geert et al. (2020)'s article. Despite the small variations in escape time at each session and trial, the behavior of the agents we eventually simulated after parameter retuning and adaptation of the simulated protocol was similar to both Pearce et al. (1998)'s experimental data and Geerts et al. (2020)'s simulated data. Thus, although the published implementation of the simulated task was not perfectly faithful to the original one, and although we were not able to exactly replicate Geerts et al. (2020)'s results with it, our results confirm that the computational model presented in the original article can be adapted and retuned to account for the addressed experimental results.
+
 
 
 

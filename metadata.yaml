@@ -5,8 +5,7 @@
 #  - For a successful replication, it should be prefixed with "[Re]"
 #  - For a failed replication, it should be prefixed with "[¬Re]"
 #  - For other article types, no instruction (but please, not too long)
-title: "[Re] A general model of hippocampal and dorsal striatal
-learning and decision making"
+title: "[Re] A general model of hippocampal and dorsal striatal learning and decision making"
 
 # List of authors with name, orcid number, email and affiliation
 # Affiliation "*" means contact author (required even for single-authored papers)
@@ -15,24 +14,22 @@ authors:
     orcid: 0000-0002-9632-1946
     email: thomas.misiek@gmail.com
     affiliations: 1*
-
+    
   - name: Mehdi Khamassi
     orcid: 0000-0002-2515-1046
-    email: mehdi.khamassi@sorbonne-universite.fr
-    affiliations: 2,3,4    # * is for contact author
+    email: mehdi.khamassi@sorbonne-unversite.fr
+    affiliations: 2,3,4,*
 
 # List of affiliations with code (corresponding to author affiliations), name
 # and address. You can also use these affiliations to add text such as "Equal
 # contributions" as name (with no address).
 affiliations:
   - code:    1
-    name:    Institute of Intelligent Systems and Robotics
-             Centre National de la Recherche Scientifique, UMR 7222
+    name:    Institute of Intelligent Systems and Robotics, Centre National de la Recherche Scientifique, UMR 7222
     address: Sorbonne Université, Paris, France
 
   - code:    2
-    name:    Institute of Intelligent Systems and Robotics
-             Centre National de la Recherche Scientifique, UMR 7222
+    name:    Institute of Intelligent Systems and Robotics, Centre National de la Recherche Scientifique, UMR 7222
     address: Sorbonne Université, Paris, France
 
   - code:    3
@@ -53,7 +50,7 @@ keywords: rescience c, rescience x, python, rats, spatial navigation, striatum, 
 #   see https://guides.github.com/activities/citable-code/
 code:
   - url: https://github.com/thomasMisiek/mixed-coordination-models
-  - doi: 10.5281/zenodo.5854457
+  - doi: 10.5281/zenodo.6551722
   - swh:
 
 # Data URL and DOI (optional if no data)
@@ -63,11 +60,11 @@ data:
 
 # Information about the original article that has been replicated
 replication:
- - cite: Geerts, J. P., Chersi, F., Stachenfeld, K. L., & Burgess, N. (2020).
+ - cite: "Geerts, J. P., Chersi, F., Stachenfeld, K. L., & Burgess, N. (2020).
          A general model of hippocampal and dorsal striatal learning and decision making.
          In Proceedings of the National Academy of Sciences (Vol. 117, Issue 49, pp. 31427–31437).
-         Proceedings of the National Academy of Sciences. https://doi.org/10.1073/pnas.2007981117 # Full textual citation
- - bib:   @article{Geerts2020,
+         Proceedings of the National Academy of Sciences. https://doi.org/10.1073/pnas.2007981117" # Full textual citation
+ - bib:   "@article{Geerts2020,
           doi = {10.1073/pnas.2007981117},
           url = {https://doi.org/10.1073/pnas.2007981117},
           year = {2020},
@@ -79,8 +76,8 @@ replication:
           author = {Jesse P. Geerts and Fabian Chersi and Kimberly L. Stachenfeld and Neil Burgess},
           title = {A general model of hippocampal and dorsal striatal learning and decision making},
           journal = {Proceedings of the National Academy of Sciences}
-          }
-# Bibtex key (if any) in your bibliography file
+          }"
+          
  - url:  https://www.pnas.org/content/pnas/117/49/31427.full.pdf # URL to the PDF, try to link to a non-paywall version
  - doi:  10.1073/pnas.2007981117 # Regular digital object identifier
 
