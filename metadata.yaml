@@ -51,7 +51,8 @@ keywords: rescience c, rescience x, python, rats, spatial navigation, striatum, 
 code:
   - url: https://github.com/thomasMisiek/mixed-coordination-models
   - doi: 10.5281/zenodo.6551722
-  - swh:
+  - swh: browse/revision/239cae046e09974d285fbb0d06c734b3a901fb5c/?origin_url=https://github.com/thomasMisiek/mixed-coordination-models
+
 
 # Data URL and DOI (optional if no data)
 data:
@@ -120,34 +121,34 @@ language: Python
 
 # For example, the URL of the GitHub issue where review actually occured
 review:
-  - url:
+  - url: https://github.com/ReScience/submissions/issues/62
 
 contributors:
-  - name:
-    orcid:
+  - name: Nicolas P. Rougier
+    orcid: 0000-0002-6972-589X
     role: editor
-  - name:
-    orcid:
+  - name: Julien Vitay
+    orcid: 0000-0001-5229-2349
     role: reviewer
-  - name:
-    orcid:
+  - name: Marcel Stimberg
+    orcid: 0000-0002-2648-4790
     role: reviewer
 
 # This information will be provided by the editor
 dates:
-  - received:  November 1, 2018
-  - accepted:
-  - published:
+  - received: January 17, 2022
+  - accepted:  March 31, 2022
+  - published: May 23, 2022
 
 # This information will be provided by the editor
 article:
-  - number: # Article number will be automatically assigned during publication
-  - doi:    # DOI from Zenodo
-  - url:    # Final PDF URL (Zenodo or rescience website?)
+  - number: 4 
+  - doi:    10.5281/zenodo.6573684
+  - url:    https://zenodo.org/record/6573684/files/article.pdf
 
 # This information will be provided by the editor
 journal:
   - name:   "ReScience C"
   - issn:   2430-3658
-  - volume: 4
+  - volume: 8
   - issue:  1
